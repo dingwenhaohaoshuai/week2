@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        .
+        <header class="header">
+            <button class="shou">收入</button><button class="zhi">支出</button>
+        </header>
+        <div class="main">
+            <p class="num">金额</p>
+            <p><input type="text"></p>
+            <p class="time">时间</p>
+            <p><input type="text"></p>
+            <p class="bei">备注</p>
+            <p><input type="text"></p>
+            <p class="fen">分类</p>
+            <select>
+				<option value="">工资</option>
+				<option value="">零花钱</option>
+				<option value="">发传单</option>
+				<option value="">充场</option>
+				<option value="">吃</option>
+				<option value="">杂</option>
+				</select>
+            <p class="number">成员</p>
+            <p>
+                <select>
+				<option value="">自己</option>
+				<option value="">恋人</option>
+				<option value="">父母</option>
+				<option value="">朋友</option>
+				<option value="">邻居</option>
+			
+				</select>
+            </p>
+            <p><button class="btn">完成</button></p>
+            <div class=" out">
+
+            </div>
+            </header>
+
+            <div class="right">
+                <ul class="list">
+                    <li>日期</li>
+
+                    <li>分类</li>
+                    <li>成员</li>
+                    <li>金额</li>
+                    <li>备注</li>
+                </ul>
+                <div class="aa">
+                    <ol class="menu">
+                        <li> 2019/4/22</li>
+                        <li> 买花</li>
+                        <li> 600</li>
+                        <li> 朋友</li>
+                    </ol>
+                    <ol class="menu">
+                        <li> 2019/4/12</li>
+                        <li> 零钱</li>
+                        <li> 1600</li>
+                        <li> 父母</li>
+                    </ol>
+                    <ol class="menu">
+                        <li> 2019/4/2</li>
+                        <li> 买表</li>
+                        <li> 1000</li>
+                        <li> 自己</li>
+                    </ol>
+                    <ol class="menu">
+                        <li> 2019/4/15</li>
+                        <li> 买肉</li>
+                        <li> 700</li>
+                        <li> 自己</li>
+                    </ol>
+                    <ol class="menu">
+                        <li> 2019/4/22</li>
+                        <li> 买花</li>
+                        <li> 500</li>
+                        <li> 朋友</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+    ajax({
+        url: "/getlist",
+        success: function(rs) {
+            var data = rs
+            render(rs)
+        }
+    })
+
+    function render(data) {
+        list.innerHTML = data.map(function(item) {
+            return ``
+        }).join()
+    }
+    var zhi = document.querySelector(".zhi");
+    var shou = document.querySelector(".shou");
+    var main = document.querySelector(".main");
+    var out = document.querySelector(".out");
+    var num = document.querySelector(".num");
+    var time = document.querySelector(".time");
+    var bei = document.querySelector(".bei");
+    var fen = document.querySelector(".fen");
+    var number = document.querySelector(".number");
+    var list = document.querySelector(".list");
+    var btn = document.querySelector(".btn");
+    zhi.onclick = function() {
+        main.style.display = "none";
+        out.style.display = "block"
+    }
+    shou.onclick = function() {
+        main.style.display = "block";
+        out.style.display = "none"
+    }
+    btn.onclick = function() {
+        var num = num.value.trim();
+        var time = time.value.trim();
+        var bei = bei.value.trim();
+        console.log(num, time, bei)
+    }
+</script>
